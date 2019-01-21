@@ -1,0 +1,86 @@
+$date
+	Mon Jan 21 14:10:28 2019
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	1s
+$end
+$scope module Test $end
+$var wire 1 ! carry $end
+$var wire 1 " sum $end
+$var reg 1 # a $end
+$var reg 1 $ b $end
+$var reg 1 % c $end
+$scope module fa $end
+$var wire 1 & A $end
+$var wire 1 ' B $end
+$var wire 1 ( C $end
+$var wire 1 ! Carry $end
+$var wire 1 " Sum $end
+$var wire 1 ) x $end
+$var wire 1 * y $end
+$var wire 1 + z $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+#0
+$dumpvars
+0+
+0*
+0)
+0(
+0'
+0&
+0%
+0$
+0#
+0"
+0!
+$end
+#10
+1"
+1%
+1(
+#20
+1+
+0%
+0(
+1$
+1'
+#30
+1!
+1*
+0"
+1%
+1(
+#40
+0!
+0*
+1"
+0%
+0(
+0$
+0'
+1#
+1&
+#50
+1!
+1*
+0"
+1%
+1(
+#60
+0*
+0+
+1)
+0%
+0(
+1$
+1'
+#70
+1"
+1%
+1(
+#80
