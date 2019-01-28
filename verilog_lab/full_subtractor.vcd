@@ -1,0 +1,88 @@
+$date
+	Mon Jan 28 13:56:22 2019
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	1s
+$end
+$scope module Test $end
+$var wire 1 ! borrow $end
+$var wire 1 " difference $end
+$var reg 1 # a $end
+$var reg 1 $ b $end
+$var reg 1 % c $end
+$scope module fa $end
+$var wire 1 & A $end
+$var wire 1 ' B $end
+$var wire 1 ! Borrow $end
+$var wire 1 ( C $end
+$var wire 1 " Difference $end
+$var wire 1 ) p $end
+$var wire 1 * q $end
+$var wire 1 + r $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+#0
+$dumpvars
+0+
+0*
+0)
+0(
+0'
+0&
+0%
+0$
+0#
+0"
+0!
+$end
+#10
+1!
+1"
+1)
+1%
+1(
+#20
+0)
+1*
+0%
+0(
+1$
+1'
+#30
+0"
+1)
+1+
+1%
+1(
+#40
+0!
+0)
+0*
+0+
+1"
+0%
+0(
+0$
+0'
+1#
+1&
+#50
+0"
+1%
+1(
+#60
+0%
+0(
+1$
+1'
+#70
+1!
+1"
+1+
+1%
+1(
+#80
