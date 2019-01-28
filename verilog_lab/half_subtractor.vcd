@@ -1,0 +1,47 @@
+$date
+	Mon Jan 28 18:51:32 2019
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	1s
+$end
+$scope module Test $end
+$var wire 1 ! borrow $end
+$var wire 1 " difference $end
+$var reg 1 # a $end
+$var reg 1 $ b $end
+$scope module hf $end
+$var wire 1 % A $end
+$var wire 1 & B $end
+$var wire 1 ! Borrow $end
+$var wire 1 " Difference $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+#0
+$dumpvars
+0&
+0%
+0$
+0#
+0"
+0!
+$end
+#10
+1"
+1!
+1$
+1&
+#20
+0!
+0$
+0&
+1#
+1%
+#30
+0"
+1$
+1&
+#40

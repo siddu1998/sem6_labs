@@ -4,71 +4,45 @@
 :vpi_module "system";
 :vpi_module "v2005_math";
 :vpi_module "va_math";
-S_0x20606a0 .scope module, "Test" "Test" 2 21;
+S_0x7f7e10 .scope module, "Test" "Test" 2 10;
  .timescale 0 0;
-v0x2073f90_0 .var "a", 0 0;
-v0x2074030_0 .var "b", 0 0;
-v0x20740e0_0 .var "c", 0 0;
-v0x2074190_0 .net "carry", 0 0, L_0x20745b0; 1 drivers
-v0x2074270_0 .net "sum", 0 0, L_0x2074700; 1 drivers
-S_0x2060790 .scope module, "fa" "full_adder" 2 25, 2 1, S_0x20606a0;
+v0x82bf20_0 .var "a", 0 0;
+v0x82bff0_0 .var "b", 0 0;
+v0x82c0a0_0 .net "borrow", 0 0, L_0x82c3e0; 1 drivers
+v0x82c150_0 .net "difference", 0 0, L_0x82c230; 1 drivers
+S_0x7e5890 .scope module, "hf" "half_subtractor_program" 2 14, 2 1, S_0x7f7e10;
  .timescale 0 0;
-L_0x2074320 .functor XOR 1, v0x2073f90_0, v0x2074030_0, C4<0>, C4<0>;
-L_0x2074450 .functor AND 1, L_0x2074320, v0x20740e0_0, C4<1>, C4<1>;
-L_0x2074550 .functor AND 1, v0x2073f90_0, v0x2074030_0, C4<1>, C4<1>;
-L_0x20745b0 .functor OR 1, L_0x2074450, L_0x2074550, C4<0>, C4<0>;
-L_0x2074700 .functor XOR 1, v0x2073f90_0, v0x2074030_0, v0x20740e0_0, C4<0>;
-v0x202a690_0 .net "A", 0 0, v0x2073f90_0; 1 drivers
-v0x2073a90_0 .net "B", 0 0, v0x2074030_0; 1 drivers
-v0x2073b30_0 .net "C", 0 0, v0x20740e0_0; 1 drivers
-v0x2073bd0_0 .alias "Carry", 0 0, v0x2074190_0;
-v0x2073c80_0 .alias "Sum", 0 0, v0x2074270_0;
-v0x2073d20_0 .net "x", 0 0, L_0x2074550; 1 drivers
-v0x2073e00_0 .net "y", 0 0, L_0x2074450; 1 drivers
-v0x2073ea0_0 .net "z", 0 0, L_0x2074320; 1 drivers
-    .scope S_0x20606a0;
+L_0x82c230 .functor XOR 1, v0x82bf20_0, v0x82bff0_0, C4<0>, C4<0>;
+L_0x82c380 .functor NOT 1, v0x82bf20_0, C4<0>, C4<0>, C4<0>;
+L_0x82c3e0 .functor AND 1, L_0x82c380, v0x82bff0_0, C4<1>, C4<1>;
+v0x7f83f0_0 .net "A", 0 0, v0x82bf20_0; 1 drivers
+v0x82bc90_0 .net "B", 0 0, v0x82bff0_0; 1 drivers
+v0x82bd30_0 .alias "Borrow", 0 0, v0x82c0a0_0;
+v0x82bdd0_0 .alias "Difference", 0 0, v0x82c150_0;
+v0x82be80_0 .net *"_s2", 0 0, L_0x82c380; 1 drivers
+    .scope S_0x7f7e10;
 T_0 ;
-    %vpi_call 2 27 "$dumpfile", "full_adder.vcd";
-    %vpi_call 2 28 "$dumpvars", 1'sb0, S_0x20606a0;
-    %vpi_call 2 29 "$display", "A B C Carry Sum";
-    %vpi_call 2 30 "$monitor", "%b %b %b \011 %b   %b", v0x2073f90_0, v0x2074030_0, v0x20740e0_0, v0x2074190_0, v0x2074270_0;
-    %set/v v0x2073f90_0, 0, 1;
-    %set/v v0x2074030_0, 0, 1;
-    %set/v v0x20740e0_0, 0, 1;
+    %vpi_call 2 16 "$dumpfile", "half_subtractor.vcd";
+    %vpi_call 2 17 "$dumpvars", 1'sb0, S_0x7f7e10;
+    %vpi_call 2 18 "$display", "A B Difference Borrow";
+    %vpi_call 2 19 "$monitor", "%b %b %b %b", v0x82bf20_0, v0x82bff0_0, v0x82c150_0, v0x82c0a0_0;
+    %set/v v0x82bf20_0, 0, 1;
+    %set/v v0x82bff0_0, 0, 1;
     %delay 10, 0;
-    %set/v v0x2073f90_0, 0, 1;
-    %set/v v0x2074030_0, 0, 1;
-    %set/v v0x20740e0_0, 1, 1;
+    %set/v v0x82bf20_0, 0, 1;
+    %set/v v0x82bff0_0, 1, 1;
     %delay 10, 0;
-    %set/v v0x2073f90_0, 0, 1;
-    %set/v v0x2074030_0, 1, 1;
-    %set/v v0x20740e0_0, 0, 1;
+    %set/v v0x82bf20_0, 1, 1;
+    %set/v v0x82bff0_0, 0, 1;
     %delay 10, 0;
-    %set/v v0x2073f90_0, 0, 1;
-    %set/v v0x2074030_0, 1, 1;
-    %set/v v0x20740e0_0, 1, 1;
+    %set/v v0x82bf20_0, 1, 1;
+    %set/v v0x82bff0_0, 1, 1;
     %delay 10, 0;
-    %set/v v0x2073f90_0, 1, 1;
-    %set/v v0x2074030_0, 0, 1;
-    %set/v v0x20740e0_0, 0, 1;
-    %delay 10, 0;
-    %set/v v0x2073f90_0, 1, 1;
-    %set/v v0x2074030_0, 0, 1;
-    %set/v v0x20740e0_0, 1, 1;
-    %delay 10, 0;
-    %set/v v0x2073f90_0, 1, 1;
-    %set/v v0x2074030_0, 1, 1;
-    %set/v v0x20740e0_0, 0, 1;
-    %delay 10, 0;
-    %set/v v0x2073f90_0, 1, 1;
-    %set/v v0x2074030_0, 1, 1;
-    %set/v v0x20740e0_0, 1, 1;
-    %delay 10, 0;
-    %vpi_call 2 40 "$finish";
+    %vpi_call 2 25 "$finish";
     %end;
     .thread T_0;
 # The file index is used to find the file name in the following table.
 :file_names 3;
     "N/A";
     "<interactive>";
-    "full_using_half.v";
+    "half_sub.v";
