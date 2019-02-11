@@ -4,75 +4,68 @@
 :vpi_module "system";
 :vpi_module "v2005_math";
 :vpi_module "va_math";
-S_0x1c933b0 .scope module, "Test" "Test" 2 27;
+S_0x2580120 .scope module, "Test" "Test" 2 17;
  .timescale 0 0;
-v0x1ccbb80_0 .var "a", 0 0;
-v0x1ccbc20_0 .var "b", 0 0;
-v0x1ccbcd0_0 .net "borrow", 0 0, L_0x1ccc4c0; 1 drivers
-v0x1ccbd80_0 .var "c", 0 0;
-v0x1ccbe60_0 .net "difference", 0 0, L_0x1ccbf10; 1 drivers
-S_0x1cb7aa0 .scope module, "fa" "full_subtractor" 2 31, 2 1, S_0x1c933b0;
+v0x258f250_0 .var "in", 3 0;
+v0x258f320_0 .net "out", 1 0, v0x258f1b0_0; 1 drivers
+S_0x2580210 .scope module, "enc" "encoder" 2 21, 2 1, S_0x2580120;
  .timescale 0 0;
-L_0x1ccbf10 .functor XOR 1, v0x1ccbb80_0, v0x1ccbc20_0, v0x1ccbd80_0, C4<0>;
-L_0x1ccc090 .functor AND 1, L_0x1ccc0f0, v0x1ccbd80_0, C4<1>, C4<1>;
-L_0x1ccc0f0 .functor NOT 1, v0x1ccbb80_0, C4<0>, C4<0>, C4<0>;
-L_0x1ccc1a0 .functor AND 1, L_0x1ccc200, v0x1ccbc20_0, C4<1>, C4<1>;
-L_0x1ccc200 .functor NOT 1, v0x1ccbb80_0, C4<0>, C4<0>, C4<0>;
-L_0x1ccc340 .functor AND 1, v0x1ccbc20_0, v0x1ccbd80_0, C4<1>, C4<1>;
-L_0x1ccc4c0 .functor OR 1, L_0x1ccc090, L_0x1ccc1a0, L_0x1ccc340, C4<0>;
-v0x1cb7b90_0 .net "A", 0 0, v0x1ccbb80_0; 1 drivers
-v0x1ccb4e0_0 .net "B", 0 0, v0x1ccbc20_0; 1 drivers
-v0x1ccb580_0 .alias "Borrow", 0 0, v0x1ccbcd0_0;
-v0x1ccb620_0 .net "C", 0 0, v0x1ccbd80_0; 1 drivers
-v0x1ccb6d0_0 .alias "Difference", 0 0, v0x1ccbe60_0;
-v0x1ccb770_0 .net *"_s2", 0 0, L_0x1ccc0f0; 1 drivers
-v0x1ccb850_0 .net *"_s5", 0 0, L_0x1ccc200; 1 drivers
-v0x1ccb8f0_0 .net "p", 0 0, L_0x1ccc090; 1 drivers
-v0x1ccb9e0_0 .net "q", 0 0, L_0x1ccc1a0; 1 drivers
-v0x1ccba80_0 .net "r", 0 0, L_0x1ccc340; 1 drivers
-    .scope S_0x1c933b0;
+v0x254a690_0 .net "in", 3 0, v0x258f250_0; 1 drivers
+v0x258f1b0_0 .var "out", 1 0;
+E_0x255bed0 .event edge, v0x254a690_0;
+    .scope S_0x2580210;
 T_0 ;
-    %vpi_call 2 33 "$dumpfile", "full_subtractor.vcd";
-    %vpi_call 2 34 "$dumpvars", 1'sb0, S_0x1c933b0;
-    %vpi_call 2 35 "$display", "A B C difference borrow";
-    %vpi_call 2 36 "$monitor", "%b %b %b \011 %b   %b", v0x1ccbb80_0, v0x1ccbc20_0, v0x1ccbd80_0, v0x1ccbe60_0, v0x1ccbcd0_0;
-    %set/v v0x1ccbb80_0, 0, 1;
-    %set/v v0x1ccbc20_0, 0, 1;
-    %set/v v0x1ccbd80_0, 0, 1;
+    %wait E_0x255bed0;
+    %load/v 8, v0x254a690_0, 4;
+    %cmpi/u 8, 1, 4;
+    %jmp/1 T_0.0, 6;
+    %cmpi/u 8, 2, 4;
+    %jmp/1 T_0.1, 6;
+    %cmpi/u 8, 4, 4;
+    %jmp/1 T_0.2, 6;
+    %cmpi/u 8, 8, 4;
+    %jmp/1 T_0.3, 6;
+    %jmp T_0.4;
+T_0.0 ;
+    %set/v v0x258f1b0_0, 0, 2;
+    %jmp T_0.4;
+T_0.1 ;
+    %movi 8, 1, 2;
+    %set/v v0x258f1b0_0, 8, 2;
+    %jmp T_0.4;
+T_0.2 ;
+    %movi 8, 2, 2;
+    %set/v v0x258f1b0_0, 8, 2;
+    %jmp T_0.4;
+T_0.3 ;
+    %set/v v0x258f1b0_0, 1, 2;
+    %jmp T_0.4;
+T_0.4 ;
+    %jmp T_0;
+    .thread T_0, $push;
+    .scope S_0x2580120;
+T_1 ;
+    %vpi_call 2 23 "$dumpfile", "encoder.vcd";
+    %vpi_call 2 24 "$dumpvars", 1'sb0, S_0x2580120;
+    %vpi_call 2 25 "$display", "in \011 out";
+    %vpi_call 2 26 "$monitor", "%b  \011 %b ", v0x258f250_0, v0x258f320_0;
+    %movi 8, 1, 4;
+    %set/v v0x258f250_0, 8, 4;
     %delay 10, 0;
-    %set/v v0x1ccbb80_0, 0, 1;
-    %set/v v0x1ccbc20_0, 0, 1;
-    %set/v v0x1ccbd80_0, 1, 1;
+    %movi 8, 2, 4;
+    %set/v v0x258f250_0, 8, 4;
     %delay 10, 0;
-    %set/v v0x1ccbb80_0, 0, 1;
-    %set/v v0x1ccbc20_0, 1, 1;
-    %set/v v0x1ccbd80_0, 0, 1;
+    %movi 8, 4, 4;
+    %set/v v0x258f250_0, 8, 4;
     %delay 10, 0;
-    %set/v v0x1ccbb80_0, 0, 1;
-    %set/v v0x1ccbc20_0, 1, 1;
-    %set/v v0x1ccbd80_0, 1, 1;
+    %movi 8, 8, 4;
+    %set/v v0x258f250_0, 8, 4;
     %delay 10, 0;
-    %set/v v0x1ccbb80_0, 1, 1;
-    %set/v v0x1ccbc20_0, 0, 1;
-    %set/v v0x1ccbd80_0, 0, 1;
-    %delay 10, 0;
-    %set/v v0x1ccbb80_0, 1, 1;
-    %set/v v0x1ccbc20_0, 0, 1;
-    %set/v v0x1ccbd80_0, 1, 1;
-    %delay 10, 0;
-    %set/v v0x1ccbb80_0, 1, 1;
-    %set/v v0x1ccbc20_0, 1, 1;
-    %set/v v0x1ccbd80_0, 0, 1;
-    %delay 10, 0;
-    %set/v v0x1ccbb80_0, 1, 1;
-    %set/v v0x1ccbc20_0, 1, 1;
-    %set/v v0x1ccbd80_0, 1, 1;
-    %delay 10, 0;
-    %vpi_call 2 46 "$finish";
+    %vpi_call 2 35 "$finish";
     %end;
-    .thread T_0;
+    .thread T_1;
 # The file index is used to find the file name in the following table.
 :file_names 3;
     "N/A";
     "<interactive>";
-    "full_subtractor.v";
+    "4_2encoder.v";

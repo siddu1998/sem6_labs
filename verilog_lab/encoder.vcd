@@ -1,0 +1,41 @@
+$date
+	Mon Feb 11 13:43:05 2019
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	1s
+$end
+$scope module Test $end
+$var wire 2 ! out [1:0] $end
+$var reg 4 " in [3:0] $end
+$scope module enc $end
+$var wire 4 # in [3:0] $end
+$var reg 2 $ out [1:0] $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+#0
+$dumpvars
+b0 $
+b1 #
+b1 "
+b0 !
+$end
+#10
+b1 $
+b1 !
+b10 "
+b10 #
+#20
+b10 $
+b10 !
+b100 "
+b100 #
+#30
+b11 $
+b11 !
+b1000 "
+b1000 #
+#40
