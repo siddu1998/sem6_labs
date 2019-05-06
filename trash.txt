@@ -1,0 +1,38 @@
+source deactivate
+
+sudo docker run -it sequenceiq/hadoop-docker:2.7.1 /etc/bootstrap.sh -bash
+
+bin/hdfs version
+
+jps
+
+cd $HADOOP_PREFIX
+
+bin/hadoop jar share/hadoop/mapreduce/hadoop-mapreduce-examples-2.7.1.jar grep input output 'dfs[a-z.]+'
+
+bin/hdfs dfs -cat output/*
+
+*************************************************************************************************************
+
+/usr/local/hadoop
+
+touch mapper.py
+
+touch reducer.py
+
+vi mapper.py--copy paste
+vi reducer.py--copy paste
+
+:wq
+
+cd
+
+cd ..
+
+chmod +x /usr/local/hadoop/mapper.py
+
+chmod +x /usr/local/hadoop/reducer.py
+
+echo "foo foo quux labs foo bar quux" | /usr/local/hadoop/mapper.py
+
+echo "foo foo quux labs foo bar quux" | /usr/local/hadoop/mapper.py | sort -k1,1 | /usr/local/hadoop/reducer.py
